@@ -9,4 +9,4 @@ class PostList(generic.ListView):
     # given the Model name and the type of view: here as Post and Listview. 
     # Should not change file name in workspace but can use template_name
     # to give it a custom name if we want 
-    template_name = "post_list.html" 
+    template_name = "post_list.html" # can be called anything we want
