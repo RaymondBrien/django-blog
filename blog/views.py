@@ -27,8 +27,15 @@ def post_detail(request, slug):
     queryset = Post.objects.filter(status=1) # only published posts
     post = get_object_or_404(queryset, slug=slug) # matching specific slug only, otherwise 404 error
 
+    comments = post.comments.all().order_by("-created_on")
+    comment_count = post.comments.filter(approved=True).count()
+
     return render(
         request,
         "blog/post_detail.html",
-        {"post": post}
+        {"post": post,
+        "comments": comments,
+        "comment_count": comment_count,
+        },
+
     )
