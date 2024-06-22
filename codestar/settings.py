@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 SITE_ID = 1 # so Django handles multiple sites from one database. 
 LOGIN_REDIRECT_URL = '/' # back to homepage
 LOGOUT_REDIRECT_URL = '/' # back to homepage
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" # styles all forms using BS
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 

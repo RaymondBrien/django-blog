@@ -28,11 +28,11 @@ def post_detail(request, slug):
 
     queryset = Post.objects.filter(status=1) # only published posts
     post = get_object_or_404(queryset, slug=slug) # matching specific slug only, otherwise 404 error
-
-    comments = post.comments.all().order_by("-created_on")
-    comment_count = post.comments.filter(approved=True).count()
+    comments = post.comments.all().order_by("-created_on") # from newest to oldest
+    comment_count = post.comments.filter(approved=True).count() # .comments for comments and comment_count variables: accessible from Comments model via related name
 
     if request.method == "POST":
+        print("Received POST")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -45,8 +45,9 @@ def post_detail(request, slug):
                 'Comment submitted and awaiting approval'
             )
 
-    comment_form = CommentForm()
+    comment_form = CommentForm() # resets content of form to blank to enable user to write another comment
 
+    print("About to render template")
     return render(
         request,
         "blog/post_detail.html",
