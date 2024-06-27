@@ -75,7 +75,8 @@ def post_detail(request, slug):
 def comment_edit(request, slug, comment_id):
 
     """
-    Display an individual comment for edit.
+    Display an individual comment for edit. 
+    Stays on page when edit submitted with HTTPResponseRedirect.
 
     **Context**
 
@@ -107,7 +108,8 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    View to delete comment. 
+    Stays on page when edit submitted with HTTPResponseRedirect.
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -120,3 +122,4 @@ def comment_delete(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    
